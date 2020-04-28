@@ -5,10 +5,29 @@ import "../../public/stylesheets/reset.css";
 import "../../public/stylesheets/style.css";
 
 class Homepage extends Component {
-  state = {
-    startupName: [],
-  };
+  constructor() {
+    super();
+    this.state = {
+      startupName: [],
+    };
+  }
 
+  componentDidMount() {
+    console.log("hello world");
+    fetch("http://localhost:3000/api/v1/startup", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(...data.list);
+        this.setState({
+          ...data.list,
+        });
+      });
+  }
   render() {
     return (
       <Route>
@@ -18,9 +37,6 @@ class Homepage extends Component {
         <div>
           <span>List of StartUp</span>
           <ul>
-            {/* {this.state.startupName.map((singleStartup) => {
-              <li>{singleStartup}</li>;
-            })} */}
             <li>hello</li>
             <li>World</li>
           </ul>

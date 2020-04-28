@@ -5,7 +5,7 @@ let logger = require("morgan");
 let mognoose = require("mongoose");
 
 let indexRouter = require("./routes/index");
-// let usersRouter = require("./routes/api/users");
+let startupRouter = require("./routes/api/startup");
 
 let app = express();
 
@@ -41,11 +41,8 @@ if (process.env.NODE_ENV === "development") {
   app.use(require("webpack-hot-middleware")(compiler));
 }
 
-// app.use("/api/v1/users", usersRouter);
-// app.use("/api/v1/admin", adminRouter);
-// app.use("/api/v1/quiz", quizzesRouter);
-// app.use("/api/v1/user", currentUser);
-app.use("/", indexRouter);
+app.use("/api/v1/startup", startupRouter);
+app.use("*", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

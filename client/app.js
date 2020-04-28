@@ -10,8 +10,8 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route path="/" Component={Homepage} />
-        <Route path="/addStartup" Component={CreateStartup} />
+        <Route path="/" component={Homepage} />
+        <Route path="/addStartup" component={CreateStartup} />
       </BrowserRouter>
     );
   }
